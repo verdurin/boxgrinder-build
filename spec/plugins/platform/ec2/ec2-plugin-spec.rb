@@ -160,7 +160,7 @@ module BoxGrinder
 
       guestfs_helper.should_receive(:augeas).and_yield do |block|
         block.should_receive(:set).with("/etc/ssh/sshd_config", "PasswordAuthentication", "no")
-        block.should_receive(:set).with("/etc/ssh/sshd_config", "PermitRootLogin", "no")
+        block.should_receive(:set).with("/etc/ssh/sshd_config", "PermitRootLogin", "yes")
       end
 
       @plugin.change_configuration(guestfs_helper)
