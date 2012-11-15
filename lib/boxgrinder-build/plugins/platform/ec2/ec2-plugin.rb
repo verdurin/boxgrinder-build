@@ -48,11 +48,11 @@ module BoxGrinder
         guestfs.upload("/etc/resolv.conf", "/etc/resolv.conf")
         @log.debug "'/etc/resolv.conf' uploaded."
 
-        if (@appliance_config.os.name == 'rhel' or @appliance_config.os.name == 'centos') and @appliance_config.os.version == '5'
-          # Remove normal kernel
-          guestfs.sh("yum -y remove kernel")
-          # because we need to install kernel-xen package
+        if (@appliance_config.os.name == 'rhel' or @appliance_config.os.name == 'centos' or @appliance_config.os.name == 'sl'   ) and @appliance_config.os.version == '5'
+          # We need to install kernel-xen package
           guestfs_helper.sh("yum -y install kernel-xen", :arch => @appliance_config.hardware.arch)
+          # and remove normal kernel
+          guestfs.sh("yum -y remove kernel")
           # and add require modules
           @linux_helper.recreate_kernel_image(guestfs, ['xenblk', 'xennet'])
         end
@@ -220,7 +220,7 @@ module BoxGrinder
         set("/etc/ssh/sshd_config", "PasswordAuthentication", "no")
 
         # disable root login
-        set("/etc/ssh/sshd_config", "PermitRootLogin", "no")
+        set("/etc/ssh/sshd_config", "PermitRootLogin", "yes")
       end
     end
   end

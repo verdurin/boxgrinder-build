@@ -69,7 +69,7 @@ module BoxGrinder
       unless @appliance_config.is64bit?
         arches = "i386,i486,i586,i686"
       else
-        arches = "x86_64"
+        arches = "x86_64,i386,i586,i686"
       end
 
       root = (@config.dir.root.end_with?('/') ? '' : @config.dir.root)
