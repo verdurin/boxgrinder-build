@@ -12,7 +12,7 @@
 Summary:     A tool for creating appliances from simple plain text files
 Name:        rubygem-%{gem_name}
 Version:     0.10.4.1
-Release:     1%{?dist}
+Release:     2%{?dist}
 Group:       Development/Languages
 License:     LGPLv3+
 URL:         http://boxgrinder.org/
@@ -153,6 +153,9 @@ popd
 %{gem_docdir}
 
 %changelog
+* Mon Nov 19 2012 Adam Huffman <a.huffman@imperial.ac.uk> - 0.10.4.1-2
+- more glideinWMS build fixes
+
 * Thu Nov 15 2012 Adam Huffman <a.huffman@imperial.ac.uk> - 0.10.4.1
 - add patches to fix builds for glideinWMS
 
